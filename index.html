@@ -128,7 +128,7 @@
       color: yellow;
       text-decoration: underline;
     }
-    
+
     #wheel-overlay {
       display: none;
       position: fixed;
@@ -143,12 +143,11 @@
       flex-direction: column;
       cursor: pointer;
     }
-    #wheel-container {
-      width: 220px;
-      height: 220px;
-      position: relative;
-      margin-bottom: 30px;
+
+    #wheel {
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
     }
+
     #result-message {
       font-size: 56px;
       font-weight: bold;
@@ -196,7 +195,6 @@
     }
 
     for (let i = 0; i < 8; i++) setTimeout(createBubble, i * 600);
-
     setInterval(createBubble, 3000);
   </script>
 
@@ -231,7 +229,7 @@
   </div>
 
   <div id="wheel-overlay" onclick="hideWheel()">
-    <div id="wheel-container">
+    <div style="width:220px;height:220px;margin-bottom:30px;">
       <svg id="wheel" viewBox="0 0 200 200">
         <path d="M100,100 L100,5 A95,95 0 0,1 100,195 Z" fill="lime"/>
         <text x="55" y="110" fill="black" font-size="16" font-family="Courier New">УДАЧА</text>
