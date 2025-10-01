@@ -13,60 +13,192 @@
       background-size: auto;
       color: white;
       margin: 0;
-      padding: 10px;
+      padding: 20px;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      animation: rise linear forwards;
+      z-index: -1;
+    }
+    @keyframes rise {
+      to {
+        transform: translateY(-105vh) translateX(calc(var(--dx, 0) * 1px));
+      }
+    }
+
     .logo {
       display: block;
-      margin: 0 auto 20px auto;
+      margin: 50px auto 60px auto;
       max-width: 100%;
     }
+
     .blink {
       color: red;
       animation: blink 1s step-end infinite;
+      margin: 40px 0;
+      font-size: 18px;
     }
     @keyframes blink {
       50% { opacity: 0; }
     }
-    .news-box {
-      background: #222;
-      border: 4px ridge #888;
-      padding: 15px;
-      margin: 20px auto;
-      max-width: 600px;
-      color: black;
+
+    .photo1 {
+      max-width: 320px;
+      margin: 60px auto;
+      border: 1px solid white;
+      display: block;
     }
-    .glass {
+
+    .glass-text {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      margin: 70px auto;
+      max-width: 800px;
+      padding: 16px 24px;
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 
+        inset 0 0 12px rgba(255, 255, 255, 0.5),
+        0 0 20px rgba(0, 255, 0, 0.3);
+      border-radius: 8px;
       display: flex;
       align-items: center;
-      margin: 20px auto;
-      max-width: 600px;
-      color: lime;
     }
-    .glass img {
-      margin-right: 15px;
-      max-height: 50px;
+    .glass-text img {
+      margin-right: 20px;
+      max-height: 60px;
     }
+
+    .news-box {
+      background: #111;
+      border: 4px ridge #aaa;
+      padding: 24px;
+      margin: 80px auto;
+      max-width: 800px;
+      color: black;
+      font-weight: bold;
+      text-align: center;
+      font-size: 20px;
+    }
+
     .luck {
       text-align: center;
-      margin: 25px auto;
+      margin: 90px auto;
       color: white;
-      max-width: 400px;
+      max-width: 500px;
     }
+    .luck img {
+      max-width: 50px;
+      margin-bottom: 15px;
+    }
+    .luck button {
+      background: black;
+      color: white;
+      border: 2px solid red;
+      font-family: "Courier New", monospace;
+      padding: 8px 16px;
+      margin-top: 12px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
     .footer {
       background: white;
       color: hotpink;
       text-align: center;
-      padding: 8px;
-      margin-top: 40px;
+      padding: 14px;
+      margin-top: 120px;
       font-weight: bold;
+      border-top: 2px solid hotpink;
+      font-size: 18px;
     }
+
     a {
       color: yellow;
       text-decoration: underline;
     }
+    
+    #wheel-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    #wheel-container {
+      width: 220px;
+      height: 220px;
+      position: relative;
+      margin-bottom: 30px;
+    }
+    #result-message {
+      font-size: 56px;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+    #result-message.success {
+      color: lime;
+      text-shadow: 0 0 15px lime;
+    }
+    #result-message.fail {
+      color: red;
+      text-shadow: 0 0 15px red;
+    }
+
+    center {
+      display: block;
+    }
   </style>
 </head>
 <body>
+
+  <script>
+    function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      const size = Math.random() * 50 + 15;
+      const leftPos = Math.random() * 100;
+      const duration = Math.random() * 25 + 12;
+      const dx = (Math.random() - 0.5) * 100;
+
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${leftPos}%`;
+      bubble.style.animationDuration = `${duration}s`;
+      bubble.style.opacity = Math.random() * 0.3 + 0.1;
+      bubble.style.setProperty('--dx', dx);
+
+      document.body.appendChild(bubble);
+
+      setTimeout(() => {
+        if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+      }, duration * 1000 + 1000);
+    }
+
+    for (let i = 0; i < 8; i++) setTimeout(createBubble, i * 600);
+
+    setInterval(createBubble, 3000);
+  </script>
 
   <img src="gifs/logo.gif" alt="Sio Production Logo" class="logo">
 
@@ -76,9 +208,9 @@
       <a href="https://www.youtube.com/@Sio12Sav">YouTube</a>
     </p>
 
-    <img src="pic/1.jpg" alt="Фото 1" style="max-width:300px; margin:20px 0; border:1px solid white;">
+    <img src="pic/1.jpeg" alt="Фото 1" class="photo1">
 
-    <div class="glass">
+    <div class="glass-text">
       <img src="pic/2.jpg" alt="Осколок">
       <span>вау это-же стеклянный осколок!</span>
     </div>
@@ -88,14 +220,62 @@
     </div>
 
     <div class="luck">
-      <img src="pic/3.jpg" alt="Значок удачи" style="max-width:40px; margin-bottom:10px;">
+      <img src="pic/3.png" alt="Значок удачи">
       <p>проверь свою удачу на сегодня!</p>
+      <button onclick="showWheel()">ПРОКРУТИТЬ</button>
     </div>
   </center>
 
   <div class="footer">
     сайт был сделан на Гитхаб!
   </div>
+
+  <div id="wheel-overlay" onclick="hideWheel()">
+    <div id="wheel-container">
+      <svg id="wheel" viewBox="0 0 200 200">
+        <path d="M100,100 L100,5 A95,95 0 0,1 100,195 Z" fill="lime"/>
+        <text x="55" y="110" fill="black" font-size="16" font-family="Courier New">УДАЧА</text>
+        <path d="M100,100 L100,195 A95,95 0 0,1 100,5 Z" fill="red"/>
+        <text x="105" y="110" fill="white" font-size="14" font-family="Courier New">НЕ ПОВЕЗЛО</text>
+        <circle cx="100" cy="100" r="95" fill="none" stroke="white" stroke-width="2"/>
+        <line x1="100" y1="5" x2="100" y2="25" stroke="yellow" stroke-width="3"/>
+      </svg>
+    </div>
+    <div id="result-message"></div>
+  </div>
+
+  <script>
+    function showWheel() {
+      const overlay = document.getElementById('wheel-overlay');
+      const wheel = document.getElementById('wheel');
+      const resultMsg = document.getElementById('result-message');
+
+      overlay.style.display = 'flex';
+      resultMsg.style.display = 'none';
+
+      const outcome = Math.floor(Math.random() * 2);
+      const baseRotation = 5 * 360;
+      let targetRotation = baseRotation + (outcome === 0 ? 0 : 180);
+      const extra = Math.random() * 40 - 20;
+
+      wheel.style.transform = `rotate(${targetRotation + extra}deg)`;
+
+      setTimeout(() => {
+        if (outcome === 0) {
+          resultMsg.textContent = 'УДАЧА!';
+          resultMsg.className = 'success';
+        } else {
+          resultMsg.textContent = 'НЕ ПОВЕЗЛО';
+          resultMsg.className = 'fail';
+        }
+        resultMsg.style.display = 'block';
+      }, 4000);
+    }
+
+    function hideWheel() {
+      document.getElementById('wheel-overlay').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
