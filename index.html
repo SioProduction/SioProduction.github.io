@@ -1,28 +1,101 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<title>SioSite</title>
-<style>
-body {
-font-family: "Courier New", Courier, monospace;
-}
-</style>
+  <meta charset="utf-8">
+  <title>Sio Production News</title>
+  <style>
+    body {
+      font-family: "Courier New", Courier, monospace;
+      background-image: url('pic/fon.jpg');
+      background-color: black;
+      background-repeat: repeat;
+      background-attachment: scroll;
+      background-size: auto;
+      color: white;
+      margin: 0;
+      padding: 10px;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 100%;
+    }
+    .blink {
+      color: red;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .news-box {
+      background: #222;
+      border: 4px ridge #888;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 600px;
+      color: black;
+    }
+    .glass {
+      display: flex;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+      color: lime;
+    }
+    .glass img {
+      margin-right: 15px;
+      max-height: 50px;
+    }
+    .luck {
+      text-align: center;
+      margin: 25px auto;
+      color: white;
+      max-width: 400px;
+    }
+    .footer {
+      background: white;
+      color: hotpink;
+      text-align: center;
+      padding: 8px;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+    a {
+      color: yellow;
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body bgcolor="black" text="lime" link="yellow">
-<center>
-<h1>ДОБРО ПОЖАЛОВАТЬ НА МОЙ САЙТ!</h1>
-<img src="gifs/pizdecKryayaGif.gif" alt="Гифка блять не робит">
-<h2>Последние новости:</h2>
-<p>
-<b>26 сентября 2025</b><br>
-Запустил сайт! Зацени мои гифки --> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1">КРУТАЯ ГИФ</a>
-</p>
-<hr>
-<blink>Я его доделаю?</blink>
-</center>
-<header></header>
-<main></main>
-<footer></footer>
+<body>
+
+  <img src="gifs/logo.gif" alt="Sio Production Logo" class="logo">
+
+  <center>
+    <p class="blink">
+      <a href="https://t.me/oneAItsjustaburningmemory">Sio Production News♿️</a> |
+      <a href="https://www.youtube.com/@Sio12Sav">YouTube</a>
+    </p>
+
+    <img src="pic/1.jpg" alt="Фото 1" style="max-width:300px; margin:20px 0; border:1px solid white;">
+
+    <div class="glass">
+      <img src="pic/2.jpg" alt="Осколок">
+      <span>вау это-же стеклянный осколок!</span>
+    </div>
+
+    <div class="news-box">
+      02.10.2025 - сайт делается!
+    </div>
+
+    <div class="luck">
+      <img src="pic/3.jpg" alt="Значок удачи" style="max-width:40px; margin-bottom:10px;">
+      <p>проверь свою удачу на сегодня!</p>
+    </div>
+  </center>
+
+  <div class="footer">
+    сайт был сделан на Гитхаб!
+  </div>
+
 </body>
-</html> <!--ТЕ КТО ЭТО ЧИТАЮТ ИДИТЕ НАХУЙ Я НЕ ШАРЮ ЗА HTML И МНЕ ПОХУЙ НА ТО КАК ВЫГЛЯДИТ КОД. ОН МНЕ НРАВИТЬСЯ!1!1!-->
+</html>
